@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Glassmorphism Login Page</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<section>
+    <div class="leaves">
+        <div class="set">
+            <div><img src="images/leaf_01.png" /></div>
+            <div><img src="images/leaf_02.png" /></div>
+            <div><img src="images/leaf_03.png" /></div>
+            <div><img src="images/leaf_04.png" /></div>
+            <div><img src="images/leaf_01.png" /></div>
+            <div><img src="images/leaf_02.png" /></div>
+            <div><img src="images/leaf_03.png" /></div>
+            <div><img src="images/leaf_04.png" /></div>
+        </div>
+    </div>
+
+    <img src="images/bg.jpg" class="bg" />
+    <img src="images/girl.png" class="girl" />
+    <img src="images/trees.png" class="trees" />
+
+    <div class="login">
+        <h2>Sign In</h2>
+
+        <form onsubmit="return loginCheck()">
+            <div class="inputBox">
+                <input type="text" id="username" placeholder="Username" required />
+            </div>
+
+            <div class="inputBox">
+                <input type="password" id="password" placeholder="Password" required />
+            </div>
+
+            <div class="inputBox">
+                <input type="submit" value="Login" id="btn" />
+            </div>
+        </form>
+
+        <div class="group">
+            <a href="#" onclick="showMessage('Check Locket ik mom'); return false;">Forget Password</a>
+            <a href="#" onclick="showMessage('Ai cho đăng ký lung tung'); return false;">Signup</a>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    function loginCheck() {
+        const correctUsername = "tranthilena";
+        const correctPassword = "26122025";
+
+        const inputUsername = document.getElementById("username").value;
+        const inputPassword = document.getElementById("password").value;
+
+        if (inputUsername === correctUsername && inputPassword === correctPassword) {
+            // Chuyển sang file khác
+            window.location.href = "nale.html";
+        } else {
+            alert("Sai tên đăng nhập hoặc mật khẩu!");
+        }
+
+        return false; // Ngăn reload trang
+    }
+    function showMessage(text) {
+        const box = document.getElementById("messageBox");
+        const message = document.getElementById("messageText");
+
+        message.innerText = text;
+        box.classList.add("show");
+
+        setTimeout(() => {
+            box.classList.remove("show");
+        }, 3000);
+    }
+</script>
+<div id="messageBox" class="message-box">
+    <p id="messageText"></p>
+</div>
+</body>
+</html>

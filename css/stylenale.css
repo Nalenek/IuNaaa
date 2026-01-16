@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(120deg, #f3e7e9, #e3eeff);
+}
+
+/* ===== Glass container ===== */
+.glass-wrapper {
+    padding: 40px 50px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+/* ===== Title ===== */
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #8f2c24;
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+/* ===== Cards ===== */
+.card-container {
+    display: flex;
+    gap: 20px;
+    height: 320px;
+}
+
+.card {
+    position: relative;
+    flex: 1;
+    border-radius: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex 0.5s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Overlay màu giống login */
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(143, 44, 36, 0.35);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Hover effect */
+.card:hover {
+    flex: 3;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card:hover::after {
+    opacity: 1;
+}
