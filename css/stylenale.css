@@ -50,10 +50,17 @@ body {
     border-radius: 18px;
     overflow: hidden;
     cursor: pointer;
-    transition: flex 0.5s ease;
+    transition: flex 0.5s ease, box-shadow 0.3s ease;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    -webkit-tap-highlight-color: transparent;
+    /* loại highlight trên Android/iOS */
+    touch-action: manipulation;
+    /* cải thiện phản hồi touch */
+    outline: none;
+    /* dùng focus-visible cho keyboard */
 }
 
+/* tối ưu khi màn hình quá nhỏ, tránh card quá hẹp */
 .card img {
     width: 100%;
     height: 100%;
@@ -71,20 +78,22 @@ body {
     transition: opacity 0.5s ease;
 }
 
-/* Hover effect */
-.card:hover {
-    flex: 3;
+/* ===== Hover effect — CHỈ DÀNH CHO THIẾT BỊ HỖ TRỢ HOVER (desktop) ===== */
+@media (hover: hover) and (pointer: fine) {
+    .card:hover {
+        flex: 3;
+    }
+
+    .card:hover img {
+        transform: scale(1.1);
+    }
+
+    .card:hover::after {
+        opacity: 1;
+    }
 }
 
-.card:hover img {
-    transform: scale(1.1);
-}
-
-.card:hover::after {
-    opacity: 1;
-}
-
-/* ===== Mobile active state ===== */
+/* ===== Mobile / touch: active state (bật bằng JS khi tap) ===== */
 .card.active {
     flex: 3;
 }
@@ -97,8 +106,31 @@ body {
     opacity: 1;
 }
 
+/* ===== Accessibility: keyboard focus should behave like hover/active ===== */
+.card:focus-visible {
+    box-shadow: 0 12px 30px rgba(143, 44, 36, 0.12);
+    /* không tự mở rộng; nếu muốn mở rộng bằng keyboard, thêm class 'active' qua JS */
+}
+
+/* ===== Mobile adjustments ===== */
 @media (max-width: 768px) {
+    .glass-wrapper {
+        padding: 20px 24px;
+        border-radius: 18px;
+    }
+
+    .title {
+        font-size: 1.5em;
+        margin-bottom: 18px;
+    }
+
     .card-container {
         height: 240px;
+        gap: 12px;
+    }
+
+    /* tránh card quá hẹp trên điện thoại rất nhỏ */
+    .card {
+        min-width: 100px;
     }
 }
